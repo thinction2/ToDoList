@@ -39,7 +39,11 @@
         "space-before-function-paren": 0,
         "eol-last": 0    ,
         "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/no-explicit-any": ["off"]
+        "@typescript-eslint/no-explicit-any": ["off"],
+        "@typescript-eslint/ban-ts-comment": [
+            "error",
+            {"ts-ignore": "allow-with-description"},
+          ],
     },
     "settings": { 
         "import/resolver": {
