@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import {StrictMode} from 'react';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { createRoot } from "react-dom/client"
+import { QueryClient, QueryClientProvider } from 'react-query';
+import {  RecoilRoot  } from "recoil"
+import { HelmetProvider } from 'react-helmet-async';
+import { ThemeProvider } from 'styled-components';
+import { darkTheme } from './theme';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+
+const root = createRoot(document.getElementById("root") as HTMLElement) ;
+const queryClient = new QueryClient()
+
+root.render(
+  <StrictMode>
+    {/* @ts-ignore */}
+    <RecoilRoot>
+      <ThemeProvider theme={darkTheme}>
+        {/* @ts-ignore */}
+        <HelmetProvider >
+          {/* @ts-ignore */}
+          <QueryClientProvider client={queryClient} >
+            <App />
+          </QueryClientProvider>
+        </HelmetProvider>
+      </ThemeProvider>
+    </RecoilRoot>
+  </StrictMode>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
